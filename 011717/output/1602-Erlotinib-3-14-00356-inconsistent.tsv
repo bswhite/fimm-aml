@@ -1,0 +1,8 @@
+patient_id	diagnosis	specific_diagnosis	lab_id	specimen_type	run_type	inhibitor	replicant	well_concentration	normalized_viability	time_of_read	id
+1602	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	Acute monoblastic and monocytic leukaemia 	14-00356	Bone Marrow Aspirate	Standard	Erlotinib	3	10	26.5023737742469	24	1602-Erlotinib-3-14-00356
+1602	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	Acute monoblastic and monocytic leukaemia 	14-00356	Bone Marrow Aspirate	Standard	Erlotinib	3	3.33333	78.2785344590338	24	1602-Erlotinib-3-14-00356
+1602	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	Acute monoblastic and monocytic leukaemia 	14-00356	Bone Marrow Aspirate	Standard	Erlotinib	3	1.11111	98.9889987329485	24	1602-Erlotinib-3-14-00356
+1602	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	Acute monoblastic and monocytic leukaemia 	14-00356	Bone Marrow Aspirate	Standard	Erlotinib	3	0.37037	95.1277257327272	24	1602-Erlotinib-3-14-00356
+1602	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	Acute monoblastic and monocytic leukaemia 	14-00356	Bone Marrow Aspirate	Standard	Erlotinib	3	0.123457	97.0583622328379	24	1602-Erlotinib-3-14-00356
+1602	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	Acute monoblastic and monocytic leukaemia 	14-00356	Bone Marrow Aspirate	Standard	Erlotinib	3	0.041152	98.8134863238476	24	1602-Erlotinib-3-14-00356
+1602	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	Acute monoblastic and monocytic leukaemia 	14-00356	Bone Marrow Aspirate	Standard	Erlotinib	3	0.013717	217.635387285206	24	1602-Erlotinib-3-14-00356

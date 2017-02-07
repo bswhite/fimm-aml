@@ -1,0 +1,5 @@
+patient_id	diagnosis	specific_diagnosis	lab_id	specimen_type	run_type	inhibitor	replicant	well_concentration	normalized_viability	time_of_read	id
+58	PRECURSOR LYMPHOID NEOPLASMS	B lymphoblastic leukaemia/lymphoma, NOS	10-00339	Bone Marrow Aspirate	Standard	AST-487	1	10	5.0411524772644	24	58-AST-487-1-10-00339
+58	PRECURSOR LYMPHOID NEOPLASMS	B lymphoblastic leukaemia/lymphoma, NOS	10-00339	Bone Marrow Aspirate	Standard	AST-487	1	1	74.1769561767578	24	58-AST-487-1-10-00339
+58	PRECURSOR LYMPHOID NEOPLASMS	B lymphoblastic leukaemia/lymphoma, NOS	10-00339	Bone Marrow Aspirate	Standard	AST-487	1	0.1	45.7304534912109	24	58-AST-487-1-10-00339
+58	PRECURSOR LYMPHOID NEOPLASMS	B lymphoblastic leukaemia/lymphoma, NOS	10-00339	Bone Marrow Aspirate	Standard	AST-487	1	0.01	51.1316909790039	24	58-AST-487-1-10-00339

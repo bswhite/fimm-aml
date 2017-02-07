@@ -1,0 +1,45 @@
+## Imports
+import(methods)
+import(stats)
+import(graphics)
+
+## IMPORTS FROM OTHER PACKAGES
+importFrom("grDevices", "rgb")
+importFrom("grDevices", "grey")
+importFrom("utils", "packageVersion")
+importFrom("utils", "packageDescription")
+
+## EXPORT S3 methods
+S3method("plot", "nplr")
+S3method("summary", "nplr")
+
+## EXPORT S3 FUNCTIONS
+export(
+  nplr,
+  convertToProp,
+  overlay,
+  plot.nplr,
+  summary.nplr
+)
+
+## EXPORT METHODS
+exportMethods(
+  getAUC,
+  getEstimates,
+  getFitValues,
+  getGoodness,
+  getInflexion,
+  getPar,
+  getStdErr,
+  getX,
+  getXcurve,
+  getY,
+  getYcurve,
+  getWeights
+)
+
+
+## EXPORT CLASSES
+exportClasses(
+  nplr
+)

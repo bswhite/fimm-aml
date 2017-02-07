@@ -1,0 +1,165 @@
+# -------------------------------------------------------
+## MAIN nplr FUNCION
+# -------------------------------------------------------
+nplr <- function(x, y, useLog=TRUE, LPweight=0.25,
+                npars="all", method=c("res", "sdw", "gw"),
+                silent=FALSE, apply.constraints=FALSE, lower.limits=NULL, upper.limits=NULL){
+
+  cat("In nplr\n")
+    if(length(x)!=length(y))
+        stop("x and y lengths differ.")
+  
+    if(is.numeric(npars) & (npars<2 | npars>5))
+        stop("\n'npars' must be in [2, 5], or 'all'!")
+  
+    method <- match.arg(method)
+
+    repTable <- table(x)
+    maxrep <- max(repTable, na.rm=TRUE)
+    minrep <- min(repTable, na.rm=TRUE)
+    if(method=="sdw"){
+        if(maxrep<2){
+            method <- "res"
+            if(!silent){
+                warning("\nNone of the x-values seem to be replicated.
+                    The 'sdw' method has been replaced by 'res'.",
+                    call.=FALSE, immediate.=TRUE)
+                message()
+            }
+
+        } else if(minrep<2){
+            if(!silent){
+                warning("\nOne (or more) points have no replicates.
+                    The 'sdw' method may not be appropriate.",
+                    call.=FALSE, immediate.=TRUE)
+                message()
+            }
+            }
+    }
+  
+    if(method=="gw" & any(y<0))
+        if(!silent){
+            warning("\nBecause of one (or more) y negative values,
+                the 'gw' method may not be appropriate.",
+                call.=FALSE, immediate.=TRUE)
+            message()
+        }
+    if(any(is.na(x) | is.na(y))){
+        NAs <- union(which(is.na(x)), which(is.na(y)))
+        x <- x[-NAs]
+        y <- y[-NAs]
+        if(!silent){
+            warning(call.=FALSE,
+                sprintf("%s point(s) has(ve) been removed for missingness.",
+                    length(NAs)),
+                immediate.=TRUE)
+            message()
+                }
+    }
+    y <- y[order(x)]
+    x <- sort(x)
+  
+    pp <- sum(y<0 | y>1)/length(y)
+    if(pp > .2 & !silent){
+        warningtext <- "% of your y values fall outside the range [0, 1]"
+        warning(call.=FALSE,
+            sprintf("%s%s", round(pp*100, 2), warningtext),
+            immediate.=TRUE)
+        message("\t- any results output may not be representative.")
+        message("\t- be sure you are using y-values as proportions.")
+        message()
+    }
+  
+    if(useLog) x <- log10(x)
+    object <- new("nplr", x=x, y=y, useLog=useLog, LPweight=LPweight)
+    object@call <- match.call()
+    object@weightMethod <- method
+  
+    .weight <- .chooseWeight(method)
+
+    if(npars=="all"){
+        testAll <- .testAll(.sce, x, y, .weight, LPweight, silent)
+        npars <- testAll$npars
+        if(!silent){
+            msg <- sprintf("The %s-parameters model showed better performance",
+                format(npars))
+            message(msg)
+        }
+    }
+  
+    nPL <- .chooseModel(npars)
+    inits <- .initPars(x, y, npars)
+    options(warn = -1)
+    best <- NULL
+    if(apply.constraints == FALSE) {
+##      cat("Doing unconstrained optimization with nlm\n")
+      best <- nlm(f=.sce, p=inits, x=x, yobs=y, .weight, LPweight, nPL)
+      options(warn = 0)
+      if(best$iterations==0)
+          stop("'nlm' failed to estimate parameters.\n")
+  
+      # Best estimates
+      bottom <- best$estimate[1]
+      top <- best$estimate[2]
+      xmid<-best$estimate[3]
+      scal <- best$estimate[4]
+      s <- best$estimate[5]
+    } else {
+##      cat("Doing constrained optimization with L-BFGS-B\n")
+##      ## Constrain vector is over c(bottom, top, xmid=IC50, scal, s)
+##      ## Constrain xmid (i.e., IC50) to be between the min and max concentrations
+##      lower.limits <- c(-Inf, -Inf, min(x), -Inf, -Inf)
+##      upper.limits <- c(Inf, Inf, max(x), Inf, Inf)
+##      ## Set bounds on bottom
+##      lower.limits[1] <- min(y) - 0.2
+##      upper.limits[1] <- min(y) + 0.2
+##      ## Set bounds on top
+##      lower.limits[2] <- max(y) - 0.2
+##      upper.limits[2] <- max(y) + 0.2
+      names(inits) <- c("bottom", "top", "xmid", "scal", "s")
+##      save(inits, file="inits.Rd")
+##      save(lower.limits, file="ll.Rd")
+##      save(upper.limits, file="ub.Rd")
+##      save(x, file="x.Rd")
+##      save(y, file="y.Rd")
+##      save(.weight, file="weight.Rd")
+##      save(LPweight, file="lpweight.Rd")q()
+##      save(nPL, file="nPL.Rd")
+      best <- optim(par=inits, fn=nplr:::.sce, method="L-BFGS-B", hessian=TRUE, lower=lower.limits, upper=upper.limits, x=x, yobs=y, .weight=.weight, LPweight=LPweight, nPL=nPL)
+      bottom <- best$par[["bottom"]]
+      top <- best$par[["top"]]
+      xmid <- best$par[["xmid"]]
+      scal <- best$par[["scal"]]
+      s <- best$par[["s"]]
+    }
+    # Estimating values
+    newX <- seq(min(x), max(x), length=200)
+    newY <- nPL(bottom, top, xmid, scal, s, newX)
+    yFit <- nPL(bottom, top, xmid, scal, s, x)
+    if(length(unique(signif(yFit, 5)))==1)
+        stop("nplr failed and returned constant fitted values.
+            Your data may not be appropriate for such model.")
+    
+    # Inflexion point coordinates
+    pars <- cbind.data.frame(bottom=bottom, top=top, xmid=xmid, scal=scal, s=s)
+    infl <- .inflPoint(pars)
+  
+    # Performances
+    w <- .weight(x, y, yFit, LPweight)
+    w <- w/sum(w, na.rm = TRUE)
+    perf <- .getPerf(y, yFit, w)
+
+    object@w <- w
+    object@npars <- npars
+    object@pars <- pars
+    object@yFit <- yFit
+    object@xCurve <- newX
+    object@yCurve <- newY
+    object@inflPoint <- infl
+#    object@goodness <- perf$goodness
+    object@goodness <- .gof(y, yFit, w)
+    object@stdErr <- c(stdErr = perf$stdErr, "weighted stdErr" = perf$wStdErr)
+    object@AUC <- data.frame(trapezoid = .AUC(newX, newY), Simpson = .Simpson(newX, newY))
+  
+    return(object)
+}

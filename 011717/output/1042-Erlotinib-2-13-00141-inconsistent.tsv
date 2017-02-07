@@ -1,0 +1,8 @@
+patient_id	diagnosis	specific_diagnosis	lab_id	specimen_type	run_type	inhibitor	replicant	well_concentration	normalized_viability	time_of_read	id
+1042	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	AML with myelodysplasia-related changes	13-00141	Bone Marrow Aspirate	Standard	Erlotinib	2	10	42.1464920043945	24	1042-Erlotinib-2-13-00141
+1042	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	AML with myelodysplasia-related changes	13-00141	Bone Marrow Aspirate	Standard	Erlotinib	2	3.33333	68.8933029174805	24	1042-Erlotinib-2-13-00141
+1042	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	AML with myelodysplasia-related changes	13-00141	Bone Marrow Aspirate	Standard	Erlotinib	2	1.11111	74.8370361328125	24	1042-Erlotinib-2-13-00141
+1042	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	AML with myelodysplasia-related changes	13-00141	Bone Marrow Aspirate	Standard	Erlotinib	2	0.37037	72.4055099487305	24	1042-Erlotinib-2-13-00141
+1042	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	AML with myelodysplasia-related changes	13-00141	Bone Marrow Aspirate	Standard	Erlotinib	2	0.123457	88.885871887207	24	1042-Erlotinib-2-13-00141
+1042	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	AML with myelodysplasia-related changes	13-00141	Bone Marrow Aspirate	Standard	Erlotinib	2	0.041152	78.6194152832031	24	1042-Erlotinib-2-13-00141
+1042	ACUTE MYELOID LEUKAEMIA (AML) AND RELATED PRECURSOR NEOPLASMS	AML with myelodysplasia-related changes	13-00141	Bone Marrow Aspirate	Standard	Erlotinib	2	0.013717	329.607147216797	24	1042-Erlotinib-2-13-00141

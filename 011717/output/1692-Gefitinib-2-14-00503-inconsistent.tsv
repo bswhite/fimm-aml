@@ -1,0 +1,8 @@
+patient_id	diagnosis	specific_diagnosis	lab_id	specimen_type	run_type	inhibitor	replicant	well_concentration	normalized_viability	time_of_read	id
+1692	MYELODYSPLASTIC/MYELOPROLIFERATIVE NEOPLASMS	Atypical chronic myeloid leukaemia, BCR-ABL1 negative	14-00503	Bone Marrow Aspirate	Standard	Gefitinib	2	10	49.0849657274686	24	1692-Gefitinib-2-14-00503
+1692	MYELODYSPLASTIC/MYELOPROLIFERATIVE NEOPLASMS	Atypical chronic myeloid leukaemia, BCR-ABL1 negative	14-00503	Bone Marrow Aspirate	Standard	Gefitinib	2	3.33333	80.2539189644112	24	1692-Gefitinib-2-14-00503
+1692	MYELODYSPLASTIC/MYELOPROLIFERATIVE NEOPLASMS	Atypical chronic myeloid leukaemia, BCR-ABL1 negative	14-00503	Bone Marrow Aspirate	Standard	Gefitinib	2	1.11111	93.2614348821904	24	1692-Gefitinib-2-14-00503
+1692	MYELODYSPLASTIC/MYELOPROLIFERATIVE NEOPLASMS	Atypical chronic myeloid leukaemia, BCR-ABL1 negative	14-00503	Bone Marrow Aspirate	Standard	Gefitinib	2	0.37037	96.4519576544759	24	1692-Gefitinib-2-14-00503
+1692	MYELODYSPLASTIC/MYELOPROLIFERATIVE NEOPLASMS	Atypical chronic myeloid leukaemia, BCR-ABL1 negative	14-00503	Bone Marrow Aspirate	Standard	Gefitinib	2	0.123457	104.060127342233	24	1692-Gefitinib-2-14-00503
+1692	MYELODYSPLASTIC/MYELOPROLIFERATIVE NEOPLASMS	Atypical chronic myeloid leukaemia, BCR-ABL1 negative	14-00503	Bone Marrow Aspirate	Standard	Gefitinib	2	0.041152	102.096728713135	24	1692-Gefitinib-2-14-00503
+1692	MYELODYSPLASTIC/MYELOPROLIFERATIVE NEOPLASMS	Atypical chronic myeloid leukaemia, BCR-ABL1 negative	14-00503	Bone Marrow Aspirate	Standard	Gefitinib	2	0.013717	185.295745621194	24	1692-Gefitinib-2-14-00503
